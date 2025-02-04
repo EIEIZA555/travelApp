@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:mytravel/widgets/destination.dart';
+import 'package:mytravel/widgets/profile.dart';
+import '../widgets/icon_tab.dart';
 import '/constants/colors.dart';
 import '/models/data.dart';
+import 'package:mytravel/widgets/search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -50,126 +53,33 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 // Row 1 - Profile
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/profile.jpg"),
-                    radius: 30,
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.menu,
-                    color: primaryColor,
-                  ),
-                ],
-              ),
+              ProfileWidget(),
               SizedBox(height: 15),
               // Row 2 - Point of Interest
               Row(
                 children: [
                   Text(
                     "Point of Interest",
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: primaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15),
-              // Row 3 - Search Bar
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search",
-                          border: InputBorder.none,
-                          icon: Icon(Icons.search),
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                    ),
-                  ),
-                  // SizedBox(width: 20),
-                  // Container(
-                  //   padding: EdgeInsets.all(15),
-                  //   decoration: BoxDecoration(
-                  //     color: primaryColor,
-                  //     borderRadius: BorderRadius.circular(20),
-                  //   ),
-                  //   child: Icon(
-                  //     Icons.tune,
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
-                ],
-              ),
-              SizedBox(height: 15),
-              // Row 4 - Categories
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/travel-1.jpg"),
-                      ),
-                      Text("Forest")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/travel-2.jpg"),
-                      ),
-                      Text("Camping")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/travel-8.jpg"),
-                      ),
-                      Text("Boat trip")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/travel-4.jpg"),
-                      ),
-                      Text("Hiking")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/travel-1.jpg"),
-                      ),
-                      Text("World tour")
-                    ],
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
+              // Row 3 - Search Bar
+              SearchingBar(),
+              SizedBox(
+                height: 15,
+              ),
+              // Row 4 - Icon tab
+              IconTab(),
               SizedBox(height: 15),
               // Row 5 - Top Destination
               Row(
@@ -222,3 +132,5 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
