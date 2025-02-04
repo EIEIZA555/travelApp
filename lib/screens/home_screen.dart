@@ -55,8 +55,8 @@ class HomeScreen extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 30,
                     backgroundImage: AssetImage("assets/images/profile.jpg"),
+                    radius: 30,
                   ),
                   Spacer(),
                   Icon(
