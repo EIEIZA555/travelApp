@@ -79,7 +79,7 @@ class DestinationWidget extends StatelessWidget {
         Text(
           name,
           style: const TextStyle(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 20, color: primaryColor, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
           height: 4,
@@ -89,7 +89,7 @@ class DestinationWidget extends StatelessWidget {
             const Icon(Icons.location_on_outlined),
             Text(
               location,
-              style: const TextStyle(fontSize: 13, color: secondaryColor),
+              style: const TextStyle(fontSize: 18, color: secondaryColor),
             ),
           ],
         ),
