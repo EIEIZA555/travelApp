@@ -13,7 +13,6 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -93,9 +92,37 @@ class SignInScreen extends StatelessWidget {
                 labelText: 'Sign Up',
               ),
               const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        'Or continue with',
+                        style: TextStyle(color: Colors.grey.shade800),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
                 height: 30,
               ),
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -111,14 +138,16 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(
                     width: 1,
                   ),
-                  TextButton(onPressed: () {
-                    Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                      builder: (context) => SignUpPage(),
-                      ),
-                      );
-                  }, child: Text('Register'))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignUpPage(),
+                          ),
+                        );
+                      },
+                      child: Text('Register'))
                 ],
               ),
             ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:mytravel/screens/home_screen.dart';
 import 'package:mytravel/screens/sign_up_screen.dart';
+
 import 'screens/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.kanitTextTheme(),
       ),
-      home: show ? const OnBoardingScreen() : SignUpPage(),
+      home: show ? const OnBoardingScreen() : HomeScreen(),
     );
   }
 }

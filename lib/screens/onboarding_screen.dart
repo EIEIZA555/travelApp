@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:mytravel/screens/sign_up_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
@@ -54,7 +55,7 @@ class OnBoardingScreen extends StatelessWidget {
     await prefs.setBool('ON BOARDING', false);
 
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => HomeScreen()),
+      MaterialPageRoute(builder: (_) => SignUpPage()),
     );
   }
 

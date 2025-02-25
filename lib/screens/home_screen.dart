@@ -4,11 +4,39 @@ import 'package:mytravel/widgets/destination.dart';
 import 'package:mytravel/widgets/profile.dart';
 import '../widgets/icon_tab.dart';
 import '/constants/colors.dart';
-import '/models/data.dart';
+//import '/models/data.dart';
 import 'package:mytravel/widgets/search_bar.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http; // new
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+  
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List destinationAPI = [];
+  bool isLoading = true;
+  
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    final response = await http.get(Uri.parse('http://localhost:3000/items'));
+    if (response.statusCode == 200) {
+      setState(() {
+        destinationAPI = json.decode(response.body);
+        isLoading = false;
+        // print(destinationAPI);
+      });
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +83,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-// Row 1 - Profile
+
               ProfileWidget(),
               SizedBox(height: 15),
               // Row 2 - Point of Interest
@@ -109,17 +137,17 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: 0.75,
                   crossAxisSpacing: 24,
                   mainAxisSpacing: 24,
-                  children: destinations.map((e) {
+                  children: List.generate(destinationAPI.length, (index) {
                     return AnimationConfiguration.staggeredGrid(
-                      position: destinations.indexOf(e),
+                      position: index,
                       columnCount: 2,
                       child: SlideAnimation(
                         child: FadeInAnimation(
                           child: DestinationWidget(
-                            name: e.name,
-                            image: e.image,
-                            rate: e.rate,
-                            location: e.location,
+                            name: destinationAPI[index]["name"],
+                            image: destinationAPI[index]["image"],
+                            rate: destinationAPI[index]["rate"].toString(),
+                            location: destinationAPI[index]["location"],
                           ),
                         ),
                       ),
