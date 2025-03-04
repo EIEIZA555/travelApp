@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362560717441",
+    "project_id": "flutterauth-6631d",
+    "storage_bucket": "flutterauth-6631d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362560717441:android:4ee7949cfda572884e4380",
+        "android_client_info": {
+          "package_name": "com.example.mytravel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH9V_SyYN1B2aKzsg5rNMFPC8U1fAmFuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

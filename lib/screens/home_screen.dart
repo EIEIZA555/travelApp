@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List destinationAPI = [];
   bool isLoading = true;
+
   
   void initState() {
     super.initState();

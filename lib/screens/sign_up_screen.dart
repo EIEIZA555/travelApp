@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytravel/screens/sign_in_screen.dart';
@@ -5,13 +6,34 @@ import 'package:mytravel/screens/sign_in_screen.dart';
 import '../widgets/mybutton.dart';
 import '../widgets/mytextfield.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final nameController = TextEditingController();
+
   final emailController = TextEditingController();
+
   final pwdController = TextEditingController();
+
   final repwdController = TextEditingController();
+
+  Future<void> signUpWithEmailAndPassword() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: pwdController.text);
+      print("Successful created account");
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const SignInPage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +101,9 @@ class SignUpPage extends StatelessWidget {
                 height: 30,
               ),
               MyButton(
-                onTap: () {},
+                onTap: () {
+                  signUpWithEmailAndPassword();
+                },
                 labelText: 'Sign Up',
               ),
               const SizedBox(
@@ -100,14 +124,16 @@ class SignUpPage extends StatelessWidget {
                   SizedBox(
                     width: 1,
                   ),
-                  TextButton(onPressed: () {
-                    Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                      builder: (context) => SignInScreen(),
-                      ),
-                      );
-                  }, child: Text('Sign In'))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignInPage(),
+                          ),
+                        );
+                      },
+                      child: Text('Sign In'))
                 ],
               ),
             ],

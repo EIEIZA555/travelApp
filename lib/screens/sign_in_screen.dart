@@ -1,15 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytravel/screens/home_screen.dart';
 import 'package:mytravel/screens/sign_up_screen.dart';
+import 'package:mytravel/widgets/my_iconbtn.dart';
 
 import '../widgets/mybutton.dart';
 import '../widgets/mytextfield.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+import 'package:firebase_auth/firebase_auth.dart';
 
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
+
   final pwdController = TextEditingController();
+
+  final String txtMsg = '';
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, 
+          password: pwdController.text
+          );
+      print("Login successfully.");
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +115,9 @@ class SignInScreen extends StatelessWidget {
                 height: 20,
               ),
               MyButton(
-                onTap: () {},
+                onTap: () {
+                  signInWithEmailAndPassword();
+                },
                 labelText: 'Sign Up',
               ),
               const SizedBox(
@@ -119,6 +148,16 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyIconButton(imagePath: 'assets/images/google-symbol.png'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  MyIconButton(imagePath: 'assets/images/profile.jpg'),
+                ],
               ),
               const SizedBox(
                 height: 30,

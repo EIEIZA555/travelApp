@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:mytravel/screens/sign_in_screen.dart';
 import 'package:mytravel/screens/sign_up_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
-
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -29,7 +29,8 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             PageViewModel(
               title: "Get Started",
-              body: "Sign up and start using the app now and you can be like kamen rider.",
+              body:
+                  "Sign up and start using the app now and you can be like kamen rider.",
               image: buildImage('assets/images/screen3-removebg-preview.png'),
               decoration: getPageDecoration(),
               footer: ElevatedButton(
@@ -55,11 +56,12 @@ class OnBoardingScreen extends StatelessWidget {
     await prefs.setBool('ON BOARDING', false);
 
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => SignUpPage()),
+      MaterialPageRoute(builder: (_) => const SignInPage()),
     );
   }
 
-  Widget buildImage(String path) => Center(child: Image.asset(path, width: 250));
+  Widget buildImage(String path) =>
+      Center(child: Image.asset(path, width: 250));
 
   PageDecoration getPageDecoration() => PageDecoration(
         titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
